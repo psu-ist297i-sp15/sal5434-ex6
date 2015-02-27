@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @songtopic.name %>
+</p>
+
+<p>
+  <strong>Album:</strong>
+  <%= @songtopic.album %>
+</p>
+
+<%= link_to 'Edit', edit_songtopic_path(@songtopic) %> |
+<%= link_to 'Back', songtopics_path %>
