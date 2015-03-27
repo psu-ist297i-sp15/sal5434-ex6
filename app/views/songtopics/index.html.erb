@@ -16,6 +16,9 @@
       <tr>
         <td><%= songtopic.name %></td>
         <td><%= songtopic.album %></td>
+        <td><%# pluralize (songtopic.votes.count, "vote") %></td>
+        <td><%= button_to '+1', upvote_songtopic_path(songtopic), method: :post %></td>
+        <td><%= button_to '-1', downvote_songtopic_path(songtopic), method: :post %></td>
         <td><%= link_to 'Show', songtopic %></td>
         <td><%= link_to 'Edit', edit_songtopic_path(songtopic) %></td>
         <td><%= link_to 'Destroy', songtopic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
