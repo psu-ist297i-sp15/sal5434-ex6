@@ -28,7 +28,7 @@ class SongtopicsController < ApplicationController
 
     respond_to do |format|
       if @songtopic.save
-        format.html { redirect_to @songtopic, notice: 'Songtopic was successfully created.' }
+        format.html { redirect_to @songtopics_path, notice: 'Songtopic was successfully created.' }
         format.json { render :show, status: :created, location: @songtopic }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class SongtopicsController < ApplicationController
   def update
     respond_to do |format|
       if @songtopic.update(songtopic_params)
-        format.html { redirect_to @songtopic, notice: 'Songtopic was successfully updated.' }
+        format.html { redirect_to @songtopics_path, notice: 'Songtopic was successfully updated.' }
         format.json { render :show, status: :ok, location: @songtopic }
       else
         format.html { render :edit }
@@ -59,6 +59,18 @@ class SongtopicsController < ApplicationController
       format.html { redirect_to songtopics_url, notice: 'Songtopic was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def upvote
+    @topic = Songtopic.find(params[:id])
+    @topic.votes.create
+    redirect_to(songtopics_path)
+  end
+
+  def downvote
+    @topic = Songtopic.find(params[:id])
+    @topic.votes.first.destroy
+    redirect_to(songtopics_path)
   end
 
   private
