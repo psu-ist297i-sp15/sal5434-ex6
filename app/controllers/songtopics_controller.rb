@@ -61,6 +61,20 @@ class SongtopicsController < ApplicationController
     end
   end
 
+  def upvote
+    @topic = Songtopic.find(params[:id])
+    @topic.votes.create
+    redirect_to(songtopics_path)
+  end
+
+  def downvote
+    @topic = Songtopic.find(params[:id])
+    # if(@topic.votes > 0)
+    @topic.votes.first.destroy
+    # end
+    redirect_to(songtopics_path)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_songtopic
@@ -71,4 +85,4 @@ class SongtopicsController < ApplicationController
     def songtopic_params
       params.require(:songtopic).permit(:name, :album)
     end
-end
+  end
